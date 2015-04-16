@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="nameApp">
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS Example</title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+			
+	
+	<!--  angularjs scripts start-->		
+		<script>
+		  var nameApp = angular.module('nameApp', []);
+		  nameApp.controller('NameCtrl', function ($scope){
+			$scope.first_name = 'John';
+			$scope.last_name = 'Smith';
+		  });
+    </script>
+			
+	<!--  angularjs scripts end-->		
+</head>
+<body>
+	<h1 class="demoHeaders">AngularJS Examples</h1>
+	<hr/>
+	
+	<h2 class="demoHeaders">Binding</h2>
+	<div id="binding">
+		
+		<ul>
+			<li><a href="#binding-1">Description </a></li>
+			<li><a href="#binding-2">Example</a></li>
+		</ul>
+		<div id="binding-1">
+		Binding is a core feature of AngularJS. It provides a simple mechanism for integrating your HTML with your data via doubled bracketed expressions. 
+		<br />
+		<b> ng-app </b> : this attribute says that this	element and anything inside of it belongs to this app.
+		</div>
+		<div id="binding-2">
+		Name  : <input  ng-model="name"/> <br/>
+		Entered Name : {{name}}
+		</div>
+	</div>
+	
+	<h2 class="demoHeaders">Filters {eg : ' | '}</h2>
+	<div id="filters">
+		<ul>
+			<li><a href="#filters-1">Description </a></li>
+			<li><a href="#filters-2">Upper Case</a></li>
+			<li><a href="#filters-3">Lower Case</a></li>
+		</ul>
+		<div id="filters-1">
+			Filters can be added to expressions and directives using a pipe character.			
+		</div>
+		<div id="filters-2">
+		<p>The uppercase filter format strings to upper case:</p>
+			Name  : <input  ng-model="name_upper"/> <br/>
+			Entered Name : {{name_upper | uppercase}}
+		</div>
+		<div id="filters-3">
+			<p>The lowercase filter format strings to lower case:</p>
+			Name  : <input  ng-model="name_lower"/> <br/>
+			Entered Name : {{name_lower | lowercase}}
+		</div>
+	</div>
+
+	<h2 class="demoHeaders">Button Handlers</h2>
+	<div id="button_handler">
+		<ul>
+			<li><a href="#btn-handler-1">Description </a></li>
+			<li><a href="#btn-handler-2">Example</a></li>
+		</ul>
+		<div id="btn-handler-1">
+			The ng-click directive defines an AngularJS click event
+		</div>
+		<div id="btn-handler-2">
+			<button ng-click="count=count+1" ng-init="count=0" ng-hide="count>5" id="add_friend">Add Friend</button> &nbsp;
+			<button ng-click="count=count-1" id="remove_friend">Remove Friend</button> &nbsp;
+			Count : {{count}}
+		</div>
+	</div>	
+	
+	<h2 class="demoHeaders">Collection </H2>
+	<div id="collections">
+		<ul>
+			<li><a href="#collections-1">Description </a></li>
+			<li><a href="#collections-2">Example - 1</a></li>
+			<li><a href="#collections-3">Example - 2 </a></li>
+			<li><a href="#collections-4">Example - 3</a></li>
+		</ul>
+		<div id="collections-1">
+		The ngRepeat directive instantiates a template once per item from a collection. Each template instance gets its own scope, where the given loop variable is set to the current collection item
+		</div>
+		<div id="collections-2">
+			<ul ng-init="friends=['karthik','satish','pradeep','sudhir']">
+					<li ng-repeat="frnd in friends">{{frnd}}</li>
+			</ul>
+		</div>
+		<div id="collections-3">
+			<ul ng-init="friends2=[
+					{name:'karthik',place:'uppal'},
+					{name:'satish',place:'nagole'},
+					{name:'pradeep',place:'us'},
+					{name:'sudhir',place:'philipins'}
+				]">
+					<li ng-repeat="frnd2 in friends2">{{frnd2.name | uppercase}} lives in {{frnd2.place}}</li>
+			</ul>
+		</div>
+		<div id="collections-4">
+			<ul ng-init="friends3=[
+					{name:'karthik',place:'uppal'},
+					{name:'satish',place:'nagole'},
+					{name:'pradeep',place:'us'},
+					{name:'sudhir',place:'philipins'}
+				]">
+				
+				<li ng-repeat="frnd3 in friends3 | filter:filterName | orderBy:'place'">{{frnd3.name | uppercase}} lives in {{frnd3.place}}</li>
+			</ul>
+				Search : <input ng-model="filterName"/>
+		</div>
+
+	</div>
+	
+	<h2 class="demoHeaders">Controller</h2>
+	<div id="controller">
+		<div id="module_controller">
+			<ul>
+				<li><a href="#module_controller-1">Description </a></li>
+				<li><a href="#module_controller-2">Example</a></li>
+			</ul>
+			<div id="module_controller-1">
+			Note : Initializing the model using an Angular controller, defined with a global function.
+			</div>
+			<div id="module_controller-2" ng-controller="NameCtrl">
+					<p>
+					First Name : <input ng-model="first_name" type="text"/> 
+					Last Name : <input ng-model="last_name" type="text"/> 
+					</p>
+					Hello {{first_name}} {{last_name}}
+			</div>
+		</div>
+	</div>	
+
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		//button names
+
+		$("#add_friend").button();
+		$("#remove_friend").button();
+
+		//tabs
+		$("#binding").tabs();
+		$("#filters").tabs();
+		$("#button_handler").tabs();	
+		$("#collections").tabs();	
+		$("#controller").tabs();
+		$("#global_controller").tabs();
+		$("#module_controller").tabs();
+		
+		$("#dialog").dialog({
+			autoOpen : false,
+			width : 400,
+		/*
+		buttons: [
+			{
+				text: "Ok",
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			{
+				text: "Cancel",
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		]*/
+		});
+
+		// Link to open the dialog
+		$("#dialog-link").click(function(event) {
+			$("#dialog").dialog("open");
+			event.preventDefault();
+		});
+
+		//select menus
+
+		$("#test_id").selectmenu();
+		$("#selectmenu").selectmenu();
+		$("#rating_select").selectmenu();
+
+		// Hover states on the static widgets
+		$("#dialog-link, #icons li").hover(function() {
+			$(this).addClass("ui-state-hover");
+		}, function() {
+			$(this).removeClass("ui-state-hover");
+		});
+	</script>
+	</body>
+</html>
