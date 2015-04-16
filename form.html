@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS : Form with AngularJS </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#form-tab").tabs();
+		});
+	</script>
+	<script>
+		  var simpleForm = angular.module('simpleForm', []);
+			simpleForm.controller('simpleFormCtrl', function ($scope){
+				$scope.form1 = {};
+                $scope.form1.vehicle_type  = "2";
+				$scope.form1.vehicle_options  = [{id:"Honda",name:"Honda"},{id:"Hero",name:"Hero"},{id:"Yamaha",name:"Yamaha"}];
+				$scope.form1.isSubmitted=false;
+				
+				$scope.submitForm=function(){
+					  var dataObject = {
+						first_name : $scope.form1.first_name
+					  ,last_name : $scope.form1.last_name
+					  ,first_name : $scope.form1.first_name
+					  ,fav_color_green : $scope.form1.fav_color_green
+					  ,fav_color_blue : $scope.form1.fav_color_blue
+					  ,gender : $scope.form1.gender
+					  ,vehicle_type : $scope.form1.vehicle_type
+					  ,vehicle_company : $scope.form1.vehicle_company
+					  ,agree : $scope.form1.agree
+				   };
+				   console.log("Data : "+dataObject);
+				};
+				$scope.clearForm=function(){
+					$scope.form1 ={};
+					$scope.form1.vehicle_options  = [{id:"Honda",name:"Honda"},{id:"Hero",name:"Hero"},{id:"Yamaha",name:"Yamaha"}];
+				};
+				
+			
+				
+				$scope.form1.submitTheForm = function(item, event) {
+				if($scope.form1.agree){
+					$scope.form1.isSubmitted=true;
+				}
+					
+				   var dataObject = {
+					first_name : $scope.form1.first_name
+					  ,last_name : $scope.form1.last_name
+					  ,email : $scope.form1.email
+					  ,fav_color_green : $scope.form1.fav_color_green
+					  ,fav_color_blue : $scope.form1.fav_color_blue
+					  ,gender : $scope.form1.gender
+					  ,vehicle_type : $scope.form1.vehicle_type
+					  ,vehicle_company : $scope.form1.vehicle_company
+					  ,agree : $scope.form1.agree
+				   };
+				   console.dir(dataObject);
+			  };	
+		  });
+    </script>
+	<style>
+    label
+    {
+      display: inline-block;
+      width: 120px;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input.ng-invalid
+    {
+      border: solid red 2px;
+    }
+
+    textarea
+    {
+      width: 300px;
+      height: 80px;
+    }
+  </style>
+</head>
+<body>
+
+	
+	
+	<div id="form-tab" ng-app="simpleForm">
+	<ul>
+			<li><a href="#binding-1">Form </a></li>
+		</ul>
+	<h2 class="demoHeaders" >Simple Form with ANGULARJS </H2>
+			<div ng-controller="simpleFormCtrl" >
+				<form name="ng_form1" ng-submit="form1.submitTheForm()" novalidate>
+					<table border="0">
+						<tr>
+							<td>First Name :</td>
+							<td>
+								<input ng-model="form1.first_name" type="text" ng-minlength="6" ng-maxlength="12" required/> {eg: min=6,max=12}
+							</td>
+						</tr>
+						<tr>
+							<td>Last Name :</tD>
+							<td><input ng-model="form1.last_name" type="text" ng-minlength="4" ng-maxlength="12"/>{eg: min=4,max=12}</td> 
+						</tr>
+						<tr>
+							<td>Email:</tD>
+							<td><input ng-model="form1.email" type="email" name="email" /></td> 
+						</tr>
+						<tr>
+							<td>Favourite Colors :</tD>
+							<td>
+								<input ng-model="form1.fav_color_green" type="checkbox" ng-true-value="yes" ng-false-value="no"/> Green
+								<input ng-model="form1.fav_color_blue" type="checkbox" ng-true-value="yes" ng-false-value="no"/> Blue
+							</td>
+						</tr>
+						<tr>
+							<td>Gender :</tD>
+							<td>
+								<input ng-model="form1.gender" type="radio" value="M"/> Male
+								<input ng-model="form1.gender" type="radio" value="F"/> Female
+							</td>
+						</tr>
+						<tr>
+							<td>Vehicle Type :</tD>
+							<td>
+								<select ng-model="form1.vehicle_type">
+									<option value=''>Choose a Vehicle Type</option>
+									<option value="2">2-Wheeler</option>
+									<option value="3">3-Wheeler</option>
+									<option value="4">4-Wheeler</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Vehicle Company :</tD>
+							<td>
+								<select ng-model="form1.vehicle_company" ng-options="obj.id as obj.name for obj in form1.vehicle_options">
+								<option value=''>Choose a Vehicle Company</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>I Agree <input ng-model="form1.agree" type="checkbox" required/></td>
+							<td>
+							<button type="submit" ng-disabled="ng_form1.$invalid">Save</button>
+								 &nbsp; &nbsp;
+								
+								<input ng-click="clearForm()" type="button" value="clear"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<br/><br/>
+				
+				<h2>Entered Details :</h2>
+				First Name : {{form1.first_name}} <br/>
+				Last Name : {{form1.last_name}} <br/>
+				Last Name : {{form1.email}} <br/>
+				Color Green : {{form1.fav_color_green}} <br/>
+				Color Blue : {{form1.fav_color_blue}} <br/>
+				Gender : {{form1.gender}} <br/>
+				Vehicle Type(wheeler) : {{form1.vehicle_type}}  <br/>
+				Vehicle Company : {{form1.vehicle_company}}  <br/>
+				I Agree : {{form1.agree}} <br/>
+				
+				<div ng-show="form1.isSubmitted">
+				<h2>Saved Details :</h2>
+				First Name : {{form1.first_name}} <br/>
+				Last Name : {{form1.last_name}} <br/>
+				Last Name : {{form1.email}} <br/>
+				Color Green : {{form1.fav_color_green}} <br/>
+				Color Blue : {{form1.fav_color_blue}} <br/>
+				Gender : {{form1.gender}} <br/>
+				Vehicle Type(wheeler) : {{form1.vehicle_type}}  <br/>
+				Vehicle Company : {{form1.vehicle_company}}  <br/>
+				I Agree : {{form1.agree}} <br/>
+				</div>
+			</div>	
+	</div>
+	
+	</body>
+</html>
