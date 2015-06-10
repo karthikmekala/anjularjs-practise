@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app='nameApp'>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS : Module Controller </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#controller").tabs();
+		});
+	</script>
+	<script>
+		  var nameApp = angular.module('nameApp', []);
+		  nameApp.controller('NameCtrl', function ($scope){
+			$scope.first_name = 'John';
+			$scope.last_name = 'Smith';
+		  });
+    </script>
+</head>
+<body>
+	<h2 class="demoHeaders">Module Controller</h2>
+	<div id="controller">
+		<div id="module_controller">
+			<ul>
+				<li><a href="#module_controller-1">Description </a></li>
+				<li><a href="#module_controller-2">Example</a></li>
+			</ul>
+			<div id="module_controller-1">
+			Note : Initializing the model using an Angular controller, defined with a global function.
+			</div>
+			<div id="module_controller-2" ng-controller="NameCtrl">
+					<p>
+					First Name : <input ng-model="first_name" type="text"/> 
+					Last Name : <input ng-model="last_name" type="text"/> 
+					</p>
+					Hello {{first_name}} {{last_name}}
+			</div>
+		</div>
+	</div>	
+
+	
+	</body>
+</html>

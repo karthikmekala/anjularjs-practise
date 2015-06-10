@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS : Binding </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#filters").tabs();
+		});
+	</script>
+</head>
+<body>
+	<h2 class="demoHeaders">Filters {eg : ' | '}</h2>
+	<div id="filters">
+		<ul>
+			<li><a href="#filters-1">Description </a></li>
+			<li><a href="#filters-2">Upper Case</a></li>
+			<li><a href="#filters-3">Lower Case</a></li>
+		</ul>
+		<div id="filters-1">
+		
+		</div>
+		<div id="filters-2">
+			Name  : <input  ng-model="name_upper"/> <br/>
+			Entered Name : {{name_upper | uppercase}}
+		</div>
+		<div id="filters-3">
+			Name  : <input  ng-model="name_lower"/> <br/>
+			Entered Name : {{name_lower | lowercase}}
+		</div>
+	</div>
+
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS : Button Handlers </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#button_handler").tabs();
+			
+			//buttons
+			$("#add_friend").button();
+			$("#remove_friend").button();
+		});
+	</script>
+</head>
+<body>
+	<h2 class="demoHeaders">Button Handlers</h2>
+	<div id="button_handler">
+		<ul>
+			<li><a href="#btn-handler-1">Description </a></li>
+			<li><a href="#btn-handler-2">Example</a></li>
+		</ul>
+		<div id="btn-handler-1">
+		</div>
+		<div id="btn-handler-2">
+			<button ng-click="count=count+1" ng-init="count=0" ng-hide="count>5" id="add_friend">Add Friend</button> &nbsp;
+			<button ng-click="count=count-1" id="remove_friend">Remove Friend</button> &nbsp;
+			Count : {{count}}
+		</div>
+	</div>	
+</body>
+</html>

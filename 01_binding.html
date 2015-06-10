@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS : Binding </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#binding").tabs();
+		});
+	</script>
+</head>
+<body>
+	<h1 class="demoHeaders">Binding</h1>
+	<hr/>
+	<div id="binding">
+		<ul>
+			<li><a href="#binding-1">Description </a></li>
+			<li><a href="#binding-2">Example</a></li>
+		</ul>
+		<div id="binding-1">
+		Binding is a core feature of AngularJS. It provides a simple mechanism for integrating your HTML with your data via doubled bracketed expressions. 
+		<br />
+		<b> ng-app </b> : this attribute says that this	element and anything inside of it belongs to this app.
+		</div>
+		<div id="binding-2">
+		Name  : <input  ng-model="name"/> <br/>
+		Entered Name : {{name}}
+		</div>
+	</div>
+	
+
+	
+	</body>
+</html>

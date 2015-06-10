@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="nameApp">
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS :  list using forms </title>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<link href="css/appStyle.css" rel="stylesheet">
+	<link href="js/jquery-ui-1.11.0.cupertino/jquery-ui.css" rel="stylesheet">
+	<script src="js/jquery-ui-1.11.0.cupertino/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.11.0.cupertino/jquery-ui.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//tabs
+			$("#list_form").tabs();
+			$("#add_Friend").button();
+		});
+	</script>
+	<script>
+		  var nameApp = angular.module('nameApp', []);
+		  nameApp.controller('NameCtrl', function ($scope){
+				$scope.friends=['karthik','satish','pradeep','sudhir'];
+				$scope.addFriend=function(){
+					$scope.friends.push($scope.friend_name);
+					$scope.friend_name='';//clearing the text field value after submit
+					console.log($scope.friends);
+				};
+				
+				$scope.removeFriend = function(name){
+					var i = $scope.friends.indexOf(name);
+					console.log($scope.friends);
+					$scope.friends.splice(i, 1);
+					console.log("Removed : "+name+", at index : "+i);
+				};
+		  });
+    </script>
+</head>
+<body>
+
+	
+	<h2 class="demoHeaders">List using forms </H2>
+	<div id="list_form">
+		<ul>
+			<li><a href="#list_form-1">Description </a></li>
+			<li><a href="#list_form-2">Example - 1</a></li>
+		</ul>
+		<div id="list_form-1">
+		
+		</div>
+		<div id="list_form-2">
+			<div ng-controller='NameCtrl'>
+				<ul>
+					<li ng-repeat="frnd in friends">
+						{{frnd}} <a href="" ng-click="removeFriend(frnd)"> Removed </a>
+					</li>
+				</ul>
+				<form ng-submit="addFriend()">
+					<input type="text" ng-model="friend_name"/>
+					<input type="submit" value="Add Friend" id="add_Friend"/>
+				</form>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
